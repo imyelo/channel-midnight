@@ -1,0 +1,10 @@
+# secret
+/config/local.json
+
+# dev
+node_modules
+
+# alive
+/build
+/logs/*
+!/logs/.gitkeep

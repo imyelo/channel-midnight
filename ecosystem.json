@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "h5v1",
+      // use PWD for capistrano
+      // https://github.com/Unitech/pm2/issues/1623
+      // http://pm2.keymetrics.io/docs/tutorials/capistrano-like-deployments#the-solution
+      "cwd": process.env.PWD,
+      "out_file": process.env.PWD + "/logs/log.log",
+      "error_file": process.env.PWD + "/logs/err.log",
+      "script": ".",
+      "instances": 1,
+      "exec_mode": "fork"
+    }
+  ]
+}
