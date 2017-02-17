@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "h5v1",
+      "name": "channel-midnight",
       // use PWD for capistrano
       // https://github.com/Unitech/pm2/issues/1623
       // http://pm2.keymetrics.io/docs/tutorials/capistrano-like-deployments#the-solution

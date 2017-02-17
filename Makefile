@@ -1,5 +1,5 @@
 CONFIG_DIR = "./config"
-DEBUG = h5v1:*
+DEBUG = channel-midnight:*
 NODE_ENV = "production"
 PROJECTS= ""
 
