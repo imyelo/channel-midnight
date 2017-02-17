@@ -9,27 +9,27 @@ const app = koa()
 const env = process.env.NODE_ENV
 const isProduction = env === 'production'
 
-app.use(views(path.resolve(__dirname, isProduction ? '../../../build/static/template' : '../../static/application/template'), {
+app.use(views(path.resolve(__dirname, isProduction ? '../../../build/static/templates' : '../../static/application/templates'), {
   map: {
     ejs: 'ejs'
   }
 }))
 
-app.use(statics(path.resolve(__dirname, isProduction ? '../../../build/static/vendor' : '../../static/application/vendor'), {
-  prefix: '/static/vendor',
+app.use(statics(path.resolve(__dirname, isProduction ? '../../../build/static/vendors' : '../../static/application/vendors'), {
+  prefix: '/static/vendors',
   buffer: isProduction,
   dynamic: !isProduction,
   maxAge: isProduction ? 60 * 60 * 24 * 7 : 0
 }))
 
-app.use(statics(path.resolve(__dirname, '../../../build/static/app'), {
-  prefix: '/static/app',
+app.use(statics(path.resolve(__dirname, '../../../build/static/apps'), {
+  prefix: '/static/apps',
   buffer: isProduction,
   dynamic: !isProduction,
   maxAge: isProduction ? 60 * 60 * 24 * 7 : 0
 }))
 
 
-app.use(require('./router').routes())
+app.use(require('./web/router').routes())
 
 module.exports = app

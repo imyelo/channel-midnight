@@ -1,8 +1,8 @@
 import Router from 'koa-router'
-import web from '../controller/web'
+import controller from './controller'
 
 const router = Router()
 
-router.get('/', web.app)
+router.get('/', controller.app)
 
 module.exports = router

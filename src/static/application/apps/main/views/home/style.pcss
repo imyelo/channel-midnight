@@ -1,0 +1,47 @@
+.view {
+	overflow-x: hidden;
+	overflow-y: hidden;
+  width: 375px;
+  height: 667px;
+}
+.playlist {
+	.song {
+		display: flex;
+		width: 100%;
+		margin: 6px 0;
+		padding: 18px;
+		box-sizing: border-box;
+		cursor: pointer;
+		transition: all 200ms ease;
+		&:hover {
+			background-color: #333;
+		}
+		.thumbnail {
+			width: 36px;
+			height: 36px;
+			display: flex;
+			align-items: center;
+			margin-right: 18px;
+			img {
+				display: block;
+				width: 100%;
+				max-width: 100%;
+			}
+		}
+		.content {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			line-height: 18px;
+			.title {
+				color: #ccc;
+				font-size: 14px;
+			}
+			.author {
+				color: #666;
+				font-size: 12px;
+			}
+		}
+	}
+}

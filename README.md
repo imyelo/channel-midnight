@@ -2,14 +2,20 @@
 
 ## 如何开始
 ### 准备
-1. 安装 nodejs 及 make
-2. 安装 yarn
+1. 安装 libasound2-dev
+
+	```sh
+	sudo apt-get install libasound2-dev
+	```
+
+2. 安装 nodejs 及 make
+3. 安装 yarn
 
 	```sh
 	npm i -g yarn
 	```
 
-3. 安装依赖包
+4. 安装依赖包
 
 	```sh
 	yarn

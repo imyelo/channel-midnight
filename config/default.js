@@ -10,5 +10,8 @@ module.exports = Object.assign({}, { package: pkg }, {
     }
   },
   "resource": {
+    "lowdb": {
+      "path": "./data/lowdb.json"
+    }
   }
 })

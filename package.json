@@ -20,6 +20,7 @@
     "config": "^1.24.0",
     "ejs": "^2.5.5",
     "graceful": "^1.0.1",
+    "keymirror": "^0.1.1",
     "koa": "^1.2.4",
     "koa-favicon": "^1.2.1",
     "koa-logger": "^1.3.0",
@@ -28,7 +29,11 @@
     "koa-rt": "^0.0.2",
     "koa-static-cache": "^3.1.7",
     "koa-views": "^4.1.0",
-    "path": "^0.12.7"
+    "lowdb": "^0.15.5",
+    "music-api": "^0.2.6",
+    "path": "^0.12.7",
+    "player": "^0.6.1",
+    "socket.io": "^1.7.3"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.18.0",

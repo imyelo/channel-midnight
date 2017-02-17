@@ -1,11 +1,11 @@
 const gulp = require('gulp')
 const sequence = require('run-sequence')
 
-require('./task/clean')
-require('./task/copy')
-require('./task/webpack')
-require('./task/rev')
-require('./task/minify')
+require('./tasks/clean')
+require('./tasks/copy')
+require('./tasks/webpack')
+require('./tasks/rev')
+require('./tasks/minify')
 
 gulp.task('dev', function () {
   return sequence('clean', 'webpack-dev')
