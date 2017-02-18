@@ -1,6 +1,6 @@
 .enter {
   opacity: 0.5;
-  transform: translateY(10px);
+  transform: translateY(20px);
   &.enterActive {
     opacity: 1;
     transform: translateY(0);
@@ -10,8 +10,10 @@
 
 .appear {
   opacity: 0.5;
+  transform: translateY(20px);
   &.appearActive {
     opacity: 1;
+    transform: translateY(0);
     transition: all 600ms ease;
   }
 }
@@ -21,7 +23,7 @@
   transform: translateY(0);
   &.leaveActive {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-20px);
     transition: all 400ms ease;
   }
 }

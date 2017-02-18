@@ -9,3 +9,11 @@ export const View = ({className, children, ...props}) => {
     </div>
   )
 }
+
+export const Main = ({className, children, ...props}) => {
+  return (
+    <div className={cx(styles.main, className)} {...props}>
+      {children}
+    </div>
+  )
+}

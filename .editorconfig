@@ -17,6 +17,6 @@ insert_final_newline = false
 [*.md]
 trim_trailing_whitespace = false
 
-[*.{styl,less,css}]
+[*.{styl,less,css,pcss}]
 indent_style = space
 indent_size = 2

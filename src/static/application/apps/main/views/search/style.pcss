@@ -1,0 +1,26 @@
+.main {
+  width: 375px;
+  min-height: 84px;
+  overflow: hidden;
+  .bar {
+    padding: 6px;
+    input {
+      width: 100%;
+      padding: 18px;
+      line-height: 36px;
+      box-sizing: border-box;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: #efefef;
+      transition: all 400ms ease;
+      border-bottom: 1px solid transparent;
+      &:focus {
+        color: color(#fd4848 h(+ 210));
+        border-bottom: 1px solid color(#fd4848 h(+ 210));
+      }
+    }
+  }
+
+}

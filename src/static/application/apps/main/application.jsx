@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import transition from './transition.pcss'
-import './application.css'
+import styles from './application.pcss'
 
 class Application extends Component {
   render() {
     const { location: { pathname }, children } = this.props
     const key = pathname || 'root'
-    return (<div className="application">
+    return (<div className={styles.application}>
       <ReactCSSTransitionGroup
         transitionName={transition}
         transitionAppear={true}

@@ -29,7 +29,7 @@ if (isDebug) {
   .....----- ${env.PKG_NAME.replace(/./g, '=')} -----.....
   `)
 
-  require('bundle!eruda')(loading.wrap((eruda) => eruda.init()))
+  // require('bundle!eruda')(loading.wrap((eruda) => eruda.init()))
 
   if (qs.__bs_server) {
     load(`http://${qs.__bs_server}/browser-sync/browser-sync-client.js?v=2.18.6`)

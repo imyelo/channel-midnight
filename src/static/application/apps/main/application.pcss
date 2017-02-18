@@ -1,0 +1,52 @@
+html,
+body,
+:global(#application-container),
+.application {
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.application {
+  $bg: #fd4848;
+  background-image: linear-gradient(color($bg h(- 15)),$bg);
+}
+
+* {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border: none;
+  border-radius: 2px;
+  transition: all 200ms ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #ccc;
+}
+::-webkit-scrollbar-track {
+  display: none;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

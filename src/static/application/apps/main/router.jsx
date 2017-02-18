@@ -18,6 +18,8 @@ function view (path) {
 const router = (<Router history={hashHistory}>
   <Route path="/" component={ Application }>
     <IndexRoute getComponent={view('./home')} />
+    <Route path="/search" getComponent={view('./search')} />
+    <Route path="/search/result" getComponent={view('./result')} />
   </Route>
 </Router>)
 

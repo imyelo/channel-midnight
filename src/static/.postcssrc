@@ -2,6 +2,7 @@
 	"plugins": {
 		"precss": {},
 		"autoprefixer": {},
-		"postcss-calc": {}
+		"postcss-calc": {},
+		"postcss-color-function": {}
 	}
 }
