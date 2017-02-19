@@ -14,4 +14,4 @@ socket.on('api:search', (search) => {
   console.log('search: ', search)
 })
 
-socket.emit('api:search', 'fade')
+export default socket

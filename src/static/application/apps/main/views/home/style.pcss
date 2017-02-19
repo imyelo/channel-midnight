@@ -1,7 +1,30 @@
 .main {
   width: 375px;
   height: 667px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .menu {
+    height: 180px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .button {
+      text-align: center;
+      font-size: 36px;
+      color: #fff;
+      padding: 12px;
+      cursor: pointer;
+      &:active {
+        color: color(#fd4848 h(+ 210));
+      }
+    }
+  }
   .playlist {
+    width: 100%;
+    flex: 1;
+    overflow-x: none;
+    overflow-y: auto;
     .song {
       display: flex;
       width: 100%;
@@ -42,5 +65,4 @@
       }
     }
   }
-
 }

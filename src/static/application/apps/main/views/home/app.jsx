@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { View, Main } from '../../components/layout'
+import Icon from '../../components/icon'
 
 import styles from './style.pcss'
 
@@ -8,6 +9,11 @@ const App = () => {
   return (
     <View>
       <Main className={styles.main}>
+        <article className={styles.menu}>
+          <div className={styles.button} onClick={() => window.location.href = '#/search'}>
+            <Icon type="add" />
+          </div>
+        </article>
         <article className={styles.playlist}>
           <div className={styles.song}>
             <div className={styles.thumbnail}>

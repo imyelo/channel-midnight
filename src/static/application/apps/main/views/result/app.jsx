@@ -1,162 +1,84 @@
-import React from 'react'
+import _ from 'underscore'
+import React, { Component} from 'react'
 
 import { View, Main } from '../../components/layout'
+import Icon from '../../components/icon'
+
+import socket from '../../io'
 
 import styles from './style.pcss'
 
-const App = () => {
-  return (
-    <View>
-      <Main className={styles.main}>
-        <article className={styles.playlist}>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
+class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      songs: [],
+    }
+  }
+
+  componentWillMount () {
+    socket.on('api:search', (search) => {
+      let songs = _.chain(search).mapObject((result, vendor) => {
+        return {
+          ...result,
+          songList: result.songList.map((song) => {
+            return {
+              ...song,
+              vendor,
+            }
+          }),
+        }
+      }).pluck('songList').flatten().value()
+      this.setState({
+        songs,
+      })
+    })
+    let keyword = this.props.location.query.keyword
+    if (!keyword) {
+      return
+    }
+    socket.emit('api:search', keyword)
+  }
+
+  render () {
+    let { songs } = this.state
+    return (
+      <View>
+        <Main className={styles.main}>
+          <article className={styles.header}>
+            <div className={styles.button} onClick={() => window.location.href = '#/'}>
+              <Icon type="cross" />
             </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
+            <div className={styles.button} onClick={() => window.location.href = '#/search'}>
+              <Icon type="search" /> { this.props.location.query.keyword }
             </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-          <div className={styles.song}>
-            <div className={styles.thumbnail}>
-              <img src="https://p4.music.126.net/Umm6zijgR6TO35X9nXkWcA==/2477199697381036.jpg?param=250y250" />
-            </div>
-            <div className={styles.content}>
-              <div className={styles.title}>? (물음표)</div>
-              <div className={styles.author}>Primary, Choiza, Zion.T</div>
-            </div>
-          </div>
-        </article>
-      </Main>
-    </View>
-  )
+          </article>
+          <article className={styles.result}>
+            {
+              songs.map((song) => {
+                return (
+                  <div className={styles.song} key={`${song.vendor}:${song.id}`}>
+                    <div className={styles.thumbnail}>
+                      <img src={song.album.coverSmall} />
+                      <Icon type={song.vendor} className={styles.vendor} />
+                    </div>
+                    <div className={styles.content}>
+                      <div className={styles.title}>{song.name}</div>
+                      <div className={styles.author}>{song.artists.map((artist) => artist.name).join(', ')}</div>
+                    </div>
+                    <div className={styles.actions}>
+                      <Icon type="add" />
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </article>
+        </Main>
+      </View>
+    )
+  }
 }
 
 export default App

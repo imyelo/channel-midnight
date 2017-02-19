@@ -1,7 +1,30 @@
 .main {
   width: 375px;
   height: 667px;
-  .playlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .header {
+    height: 120px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .button {
+      text-align: center;
+      font-size: 18px;
+      color: #fff;
+      padding: 6px;
+      cursor: pointer;
+      &:active {
+        color: color(#fd4848 h(+ 210));
+      }
+    }
+  }
+  .result {
+    width: 100%;
+    flex: 1;
+    overflow-x: none;
+    overflow-y: auto;
     .song {
       display: flex;
       width: 100%;
@@ -19,13 +42,25 @@
         display: flex;
         align-items: center;
         margin-right: 18px;
+        position: relative;
         img {
           display: block;
           width: 100%;
           max-width: 100%;
         }
+        .vendor {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          color: #ccc;
+          background-color: #333;
+          width: 12px;
+          height: 12px;
+          display: inline-block;
+        }
       }
       .content {
+        flex: 1;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -38,6 +73,27 @@
         .author {
           color: #666;
           font-size: 12px;
+        }
+      }
+      .actions {
+        opacity: 0;
+        color: #ccc;
+        overflow: hidden;
+        font-size: 24px;
+        padding: 0 6px;
+        line-height: 36px;
+        text-align: center;
+        transition: all 200ms ease;
+        &:hover {
+          color: #fff;
+        }
+        &:active {
+          color: color(#fd4848 h(+ 210));
+        }
+      }
+      &:hover {
+        .actions {
+          opacity: 1;
         }
       }
     }
