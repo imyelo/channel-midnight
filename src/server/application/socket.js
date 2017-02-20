@@ -27,8 +27,9 @@ export default function (io) {
     play()
   }
 
-  const top = function (index) {
+  const top = function (song) {
     let songs = store.get('playlist.songs').value()
+    let index = songs.findIndex((s) => s.id === song.id && s.vendor === song.vendor)
     store.set('playlist.songs', [songs[index], ...songs.slice(0, index), ...songs.slice(index + 1)]).write()
     play()
   }
@@ -46,6 +47,16 @@ export default function (io) {
 
     let emitPlaylist = () => {
       socket.emit('api:playlist', store.get('playlist').value())
+    }
+
+    let remove = (song) => {
+      let songs = store.get('playlist.songs').value()
+      let index = songs.findIndex((s) => s.id === song.id && s.vendor === song.vendor)
+      store.set('playlist.songs', [...songs.slice(0, index), ...songs.slice(index + 1)]).write()
+      emitPlaylist()
+      if (index === 0) {
+        play()
+      }
     }
 
     player.on('playing', emitPlayer)
@@ -71,6 +82,7 @@ export default function (io) {
     socket.on('api:top', top)
     socket.on('api:resume', resume)
     socket.on('api:pause', pause)
+    socket.on('api:remove', remove)
 
     socket.on('api:player', emitPlayer)
 

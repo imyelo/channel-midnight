@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1487586630854'); /* IE9*/
-  src: url('iconfont.eot?t=1487586630854#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1487586630854') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1487586630854') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1487586630854#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1487597872985'); /* IE9*/
+  src: url('iconfont.eot?t=1487597872985#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1487597872985') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1487597872985') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1487597872985#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -15,7 +15,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-add:before { content: "\e61e"; }
+
 .icon-qq:before { content: "\e65f"; }
+
+.icon-cross:before { content: "\e69b"; }
 
 .icon-top:before { content: "\e62f"; }
 
@@ -25,7 +29,7 @@
 
 .icon-search:before { content: "\e606"; }
 
-.icon-pause:before { content: "\e607"; }
+.icon-circle-pause-o:before { content: "\e607"; }
 
 .icon-single-cycle:before { content: "\e608"; }
 
@@ -35,25 +39,25 @@
 
 .icon-microphone:before { content: "\e60b"; }
 
-.icon-reduce:before { content: "\e60c"; }
+.icon-circle-reduce-o:before { content: "\e60c"; }
 
 .icon-mute:before { content: "\e60d"; }
 
 .icon-loop:before { content: "\e60e"; }
 
-.icon-cross:before { content: "\e60f"; }
+.icon-circle-cross-o:before { content: "\e60f"; }
 
 .icon-volumn:before { content: "\e610"; }
 
-.icon-fast-backward:before { content: "\e611"; }
+.icon-circle-fast-backward-o:before { content: "\e611"; }
 
 .icon-random:before { content: "\e612"; }
 
 .icon-heart:before { content: "\e613"; }
 
-.icon-play:before { content: "\e614"; }
+.icon-circle-play-o:before { content: "\e614"; }
 
-.icon-stop:before { content: "\e615"; }
+.icon-circle-stop-o:before { content: "\e615"; }
 
 .icon-deny:before { content: "\e616"; }
 
@@ -63,9 +67,9 @@
 
 .icon-refresh:before { content: "\e619"; }
 
-.icon-add:before { content: "\e61a"; }
+.icon-circle-add-o:before { content: "\e61a"; }
 
-.icon-fast-forward:before { content: "\e61b"; }
+.icon-circle-fast-forward-o:before { content: "\e61b"; }
 
 .icon-music:before { content: "\e61c"; }
 

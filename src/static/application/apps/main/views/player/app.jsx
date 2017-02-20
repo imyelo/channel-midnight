@@ -93,14 +93,14 @@ class App extends Component {
             {
               player.status === PLAYER_STATUS.PLAYING ?
                 <div className={styles.status} onClick={this.pause.bind(this)}>
-                  <Icon type="pause" />
+                  <Icon type="circle-pause-o" />
                 </div> :
                 player.status === PLAYER_STATUS.PAUSED ?
                   <div className={styles.status} onClick={this.resume.bind(this)}>
-                    <Icon type="play" />
+                    <Icon type="circle-play-o" />
                   </div> :
                   <div className={styles.status} onClick={this.play.bind(this)}>
-                    <Icon type="play" />
+                    <Icon type="circle-play-o" />
                   </div>
             }
           </article>
