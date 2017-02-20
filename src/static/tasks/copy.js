@@ -2,7 +2,7 @@ var gulp = require('gulp');
 
 gulp.task('copy', function () {
   return gulp.src([
-      './application/vendor/**/*'
+      './application/vendors/**/*'
     ], {
       base: './application'
     })

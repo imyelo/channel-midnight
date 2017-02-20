@@ -27,20 +27,18 @@ node:
 development:
 	@DEBUG=${DEBUG} HOSTNAME=${HOSTNAME} NODE_ENV=development NODE_CONFIG_DIR=${CONFIG_DIR} node-dev ./babel-entry
 
-server: init stop
-	@DEBUG=${DEBUG} HOSTNAME=${HOSTNAME} NODE_ENV=${NODE_ENV} NODE_CONFIG_DIR=${CONFIG_DIR} pm2 start ${PM2_PROCESS_FILE}
-
-stop:
-	-pm2 delete ${PM2_PROCESS_FILE}
+server: init
+	@DEBUG=${DEBUG} HOSTNAME=${HOSTNAME} NODE_ENV=${NODE_ENV} NODE_CONFIG_DIR=${CONFIG_DIR} node ./build/server
 
 
 # build
 build:
 	@cd ./src/static/ && NODE_CONFIG_DIR=../../config gulp build
+	@./node_modules/.bin/babel ./src/server  -d ./build/server -s
 
 
 # alias
 dev: development
 
 
-.PHONY: init install uninstall reinstall node development server stop build dev
+.PHONY: init install uninstall reinstall node development server build dev

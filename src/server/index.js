@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import co from 'co'
 import http from 'http'
 import config from 'config'

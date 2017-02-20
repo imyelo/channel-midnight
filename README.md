@@ -9,31 +9,26 @@
 	```
 
 2. 安装 nodejs 及 make
-3. 安装 yarn
+
+3. 安装 node-dev 及 gulp
+
+	```sh
+    npm i -g node-dev gulp
+    ```
+
+4. 安装 yarn
 
 	```sh
 	npm i -g yarn
 	```
 
-4. 安装依赖包
+5. 安装依赖包
 
 	```sh
 	yarn
 	cd src/static && yarn
 	```
 
-### 开发环境运行
-1. 开启前端文件实时编译
-
-	```sh
-	cd src/static && gulp
-	```
-
-2. 启动服务端
-
-	```sh
-	make dev
-	```
 
 ## 如何部署
 ### 编译打包
@@ -45,3 +40,17 @@ make build
 ```sh
 make server
 ```
+
+
+## 如何运行开发环境
+1. 开启前端文件实时编译
+
+	```sh
+	cd src/static && gulp
+	```
+
+2. 启动服务端
+
+	```sh
+	make dev
+	```
