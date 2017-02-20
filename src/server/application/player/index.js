@@ -50,7 +50,7 @@ class PlayerService extends events.EventEmitter {
     this.player.play()
   }
 
-  continue () {
+  resume () {
     if (this.status() !== PLAYER_STATUS.PAUSED ) {
       return
     }

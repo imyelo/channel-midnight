@@ -58,9 +58,9 @@ class App extends Component {
     socket.emit('api:play')
   }
 
-  continue () {
-    console.log('continue')
-    socket.emit('api:continue')
+  resume () {
+    console.log('resume')
+    socket.emit('api:resume')
   }
 
   pause () {
@@ -96,7 +96,7 @@ class App extends Component {
                   <Icon type="pause" />
                 </div> :
                 player.status === PLAYER_STATUS.PAUSED ?
-                  <div className={styles.status} onClick={this.continue.bind(this)}>
+                  <div className={styles.status} onClick={this.resume.bind(this)}>
                     <Icon type="play" />
                   </div> :
                   <div className={styles.status} onClick={this.play.bind(this)}>

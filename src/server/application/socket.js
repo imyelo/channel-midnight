@@ -12,6 +12,13 @@ export default function (io) {
         player.play(song.url)
       })
   }
+  const pause = function () {
+    player.pause()
+  }
+
+  const resume = function () {
+    player.resume()
+  }
 
   const next = function () {
     let songs = store.get('playlist.songs').value()
@@ -62,14 +69,8 @@ export default function (io) {
     socket.on('api:play', play)
     socket.on('api:next', next)
     socket.on('api:top', top)
-
-    socket.on('api:continue', function () {
-      player.continue()
-    })
-
-    socket.on('api:pause', function () {
-      player.pause()
-    })
+    socket.on('api:resume', resume)
+    socket.on('api:pause', pause)
 
     socket.on('api:player', emitPlayer)
 
