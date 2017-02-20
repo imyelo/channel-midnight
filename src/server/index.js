@@ -47,6 +47,12 @@ module.exports = co(function *() {
   // import applications
   require('./application')(app, io)
 
+  // graceful
+  graceful({
+    servers: [server],
+    killTimeout: '3s'
+  })
+
   // onerror
   app.on('error', function (err) {
     console.error('[server error]', err.stack)
