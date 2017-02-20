@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 import op from 'object-path'
+import km from 'keymirror'
 
 import { View, Main } from '../../components/layout'
 import Icon from '../../components/icon'
@@ -8,12 +10,21 @@ import socket from '../../io'
 
 import styles from './style.pcss'
 
+export const PLAYER_STATUS = km({
+  PLAYING: null,
+  PAUSED: null,
+  STOP: null,
+})
+
 class App extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      songs: []
+      songs: [],
+      player: {
+        status: PLAYER_STATUS.STOP,
+      },
     }
   }
 
@@ -24,21 +35,46 @@ class App extends Component {
         songs,
       })
     }
+    this.handleGetPlayer = (player) => {
+      this.setState({
+        player,
+      })
+    }
 
     socket.on('api:playlist', this.handleGetPlaylist)
-    this.getPlaylist()
+    socket.on('api:player', this.handleGetPlayer)
+
+    socket.emit('api:playlist')
+    socket.emit('api:player')
   }
 
   componentWillUnmount () {
     socket.off('api:playlist', this.handleGetPlaylist)
+    socket.off('api:player', this.handleGetPlayer)
   }
 
-  getPlaylist () {
-    socket.emit('api:playlist')
+  play () {
+    console.log('play')
+    socket.emit('api:play')
+  }
+
+  continue () {
+    console.log('continue')
+    socket.emit('api:continue')
+  }
+
+  pause () {
+    console.log('pause')
+    socket.emit('api:pause')
+  }
+
+  next () {
+    console.log('next')
+    socket.emit('api:next')
   }
 
   render () {
-    let { songs } = this.state
+    let { songs, player } = this.state
     return (
       <View>
         <Main className={styles.main}>
@@ -51,16 +87,29 @@ class App extends Component {
             </div>
           </article>
           <article className={styles.disc}>
-            <div className={styles.cover}>
+            <div className={cx(styles.cover, { [styles.playing]: player.status === PLAYER_STATUS.PLAYING })}>
               <img src={op.get(songs, '0.album.cover')} />
             </div>
-            <div className={styles.status}>
-              <Icon type="pause" />
-            </div>
+            {
+              player.status === PLAYER_STATUS.PLAYING ?
+                <div className={styles.status} onClick={this.pause.bind(this)}>
+                  <Icon type="pause" />
+                </div> :
+                player.status === PLAYER_STATUS.PAUSED ?
+                  <div className={styles.status} onClick={this.continue.bind(this)}>
+                    <Icon type="play" />
+                  </div> :
+                  <div className={styles.status} onClick={this.play.bind(this)}>
+                    <Icon type="play" />
+                  </div>
+            }
           </article>
           <article className={styles.control}>
             <div className={styles.button} onClick={() => window.location.href = '#/playlist'}>
               <Icon type="list" />
+            </div>
+            <div className={styles.button} onClick={this.next.bind(this)}>
+              <Icon type="next" />
             </div>
           </article>
         </Main>

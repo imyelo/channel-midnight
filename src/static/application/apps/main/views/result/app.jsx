@@ -27,7 +27,7 @@ class App extends Component {
               ...song,
               vendor,
             }
-          }),
+          }).filter((song) => !song.needPay && song.vendor === 'qq'),
         }
       }).pluck('songList').flatten().value()
       this.setState({

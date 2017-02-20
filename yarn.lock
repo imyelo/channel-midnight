@@ -1291,9 +1291,9 @@ ms@0.7.2, ms@~0.7.0:
   version "0.7.2"
   resolved "http://registry.npm.taobao.org/ms/download/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
-music-api@^0.2.6:
-  version "0.2.6"
-  resolved "http://registry.npm.taobao.org/music-api/download/music-api-0.2.6.tgz#d0cc385d9852746b021c51feb93d67fde90dba36"
+music-api@^0.2.7:
+  version "0.2.7"
+  resolved "http://registry.npm.taobao.org/music-api/download/music-api-0.2.7.tgz#189fc3cfbe84cef7509cd6fd9b3656f0fc343fe8"
   dependencies:
     big-integer "^1.6.17"
     crypto "^0.0.3"

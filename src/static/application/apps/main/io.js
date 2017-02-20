@@ -6,6 +6,10 @@ socket.on('connect', () => {
   console.log('connected.')
 })
 
+socket.on('api:player', (player) => {
+  console.log('player: ', player)
+})
+
 socket.on('api:playlist', (playlist) => {
   console.log('playlist: ', playlist)
 })

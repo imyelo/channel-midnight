@@ -15,6 +15,10 @@ class SongsService {
       page: 1,
     })
   }
+  getSong ({ vendor, id }) {
+    console.log(vendor, id)
+    return Api.getSong(vendor, { id })
+  }
 }
 
 export default new SongsService()

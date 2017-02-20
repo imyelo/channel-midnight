@@ -30,7 +30,7 @@
     "koa-static-cache": "^3.1.7",
     "koa-views": "^4.1.0",
     "lowdb": "^0.15.5",
-    "music-api": "^0.2.6",
+    "music-api": "^0.2.7",
     "path": "^0.12.7",
     "player": "^0.6.1",
     "socket.io": "^1.7.3"

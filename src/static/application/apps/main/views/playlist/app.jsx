@@ -25,15 +25,15 @@ class App extends Component {
     }
 
     socket.on('api:playlist', this.handleGetPlaylist)
-    this.getPlaylist()
+    socket.emit('api:playlist')
   }
 
   componentWillUnmount () {
     socket.off('api:playlist', this.handleGetPlaylist)
   }
 
-  getPlaylist () {
-    socket.emit('api:playlist')
+  top (index) {
+    socket.emit('api:top', index)
   }
 
   render () {
@@ -51,7 +51,7 @@ class App extends Component {
           </article>
           <article className={styles.playlist}>
             {
-              songs.map((song) => {
+              songs.map((song, index) => {
                 return (
                   <div className={styles.song} key={`${song.vendor}:${song.id}`}>
                     <div className={styles.thumbnail}>
@@ -62,7 +62,7 @@ class App extends Component {
                       <div className={styles.title}>{song.name}</div>
                       <div className={styles.author}>{song.artists.map((artist) => artist.name).join(', ')}</div>
                     </div>
-                    <div className={styles.actions} onClick={() => this.add(song)}>
+                    <div className={styles.actions} onClick={() => this.top(index)}>
                       <Icon type="top" />
                     </div>
                   </div>
