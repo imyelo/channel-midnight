@@ -59,7 +59,7 @@ class App extends Component {
 
   add (song) {
     socket.emit('api:add', song)
-    window.location.href = '#/'
+    window.location.href = '#/playlist'
   }
 
   render () {
@@ -68,7 +68,7 @@ class App extends Component {
       <View>
         <Main className={styles.main}>
           <article className={styles.header}>
-            <div className={styles.button} onClick={() => window.location.href = '#/'}>
+            <div className={styles.button} onClick={() => window.location.href = '#/playlist'}>
               <Icon type="list" />
             </div>
             <div className={styles.button}>

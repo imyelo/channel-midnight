@@ -1,0 +1,99 @@
+$duration: 12s;
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.main {
+  width: 375px;
+  height: 375px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  .header {
+    height: 0;
+    overflow: hidden;
+    line-height: 1.5em;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title {
+      color: #eee;
+      font-size: 24px;
+      line-height: 2em;
+    }
+    .artists {
+      color: #ccc;
+      font-size: 14px;
+    }
+  }
+  .disc {
+    position: relative;
+    width: 325px;
+    height: 325px;
+    .cover {
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #222;
+      animation: $duration linear infinite;
+      animation-name: rotate;
+      img {
+        width: 100%;
+        max-width: 100%;
+        display: block;
+      }
+    }
+    .status {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 64px;
+      opacity: 0;
+      transition: all 200ms ease;
+      cursor: pointer;
+      color: #fff;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .control {
+    height: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    .button {
+      text-align: center;
+      font-size: 24px;
+      color: #fff;
+      padding: 12px;
+      cursor: pointer;
+      &:active {
+        color: color(#fd4848 h(+ 210));
+      }
+    }
+  }
+  &:hover {
+    height: calc(375px + 100px * 2);
+    .header {
+      height: 100px;
+    }
+    .control {
+      height: 100px;
+    }
+  }
+}
