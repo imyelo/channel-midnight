@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentWillMount () {
-    socket.on('api:search', (search) => {
+    this.handleSearch = (search) => {
       let songs = _.chain(search).mapObject((result, vendor) => {
         return {
           ...result,
@@ -33,12 +33,33 @@ class App extends Component {
       this.setState({
         songs,
       })
-    })
+    }
+
+    socket.on('api:search', this.handleSearch)
+    this.search()
+  }
+
+  componentWillUnmount () {
+    socket.off('api:search', this.handleSearch)
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.location.query.keyword !== this.props.location.query.keyword) {
+      this.search()
+    }
+  }
+
+  search () {
     let keyword = this.props.location.query.keyword
     if (!keyword) {
       return
     }
     socket.emit('api:search', keyword)
+  }
+
+  add (song) {
+    socket.emit('api:add', song)
+    window.location.href = '#/'
   }
 
   render () {
@@ -48,10 +69,13 @@ class App extends Component {
         <Main className={styles.main}>
           <article className={styles.header}>
             <div className={styles.button} onClick={() => window.location.href = '#/'}>
-              <Icon type="cross" />
+              <Icon type="list" />
+            </div>
+            <div className={styles.button}>
+              { this.props.location.query.keyword }
             </div>
             <div className={styles.button} onClick={() => window.location.href = '#/search'}>
-              <Icon type="search" /> { this.props.location.query.keyword }
+              <Icon type="search" />
             </div>
           </article>
           <article className={styles.result}>
@@ -67,7 +91,7 @@ class App extends Component {
                       <div className={styles.title}>{song.name}</div>
                       <div className={styles.author}>{song.artists.map((artist) => artist.name).join(', ')}</div>
                     </div>
-                    <div className={styles.actions}>
+                    <div className={styles.actions} onClick={() => this.add(song)}>
                       <Icon type="add" />
                     </div>
                   </div>
