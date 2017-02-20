@@ -33,8 +33,12 @@ class PlayerService extends events.EventEmitter {
 
   resetPlayer () {
     if (this.player) {
-      this.player.stop()
-      this.player.removeAllListeners()
+      try {
+        this.player.stop()
+        this.player.removeAllListeners()
+      } catch (error) {
+        console.error(error)
+      }
     }
 
     this.player = new Player()
