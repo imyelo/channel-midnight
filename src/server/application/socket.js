@@ -7,6 +7,9 @@ const log = console.log.bind(console)
 export default function (io) {
   const play = function () {
     let song = store.get('playlist.songs.0').value()
+    if (!song) {
+      return
+    }
     SongsService.getSong({ vendor: song.vendor, id: song.id })
       .then((song) => {
         player.play(song.url)
@@ -79,7 +82,11 @@ export default function (io) {
     })
 
     socket.on('api:add', function (song) {
-      socket.emit('api:add', store.get('playlist.songs').push(song).write())
+      let songs = store.get('playlist.songs').push(song).write()
+      socket.emit('api:add', songs)
+      if (songs.length === 1) {
+        play()
+      }
     })
 
     socket.on('api:play', play)
