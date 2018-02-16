@@ -11,6 +11,9 @@ export default function (io) {
       .then((song) => {
         player.play(song.url)
       })
+      .catch((error) => {
+        console.log(error)
+      })
   }
   const pause = function () {
     player.pause()
