@@ -21,15 +21,24 @@ class PlayerService extends events.EventEmitter {
   }
 
   play (source) {
-    const readable = request(source)
+    this._file = request(source)
+    this._file.on('close', () => {
+      this.playing = false
+      this.paused = false
+      this.emit('playend')
+    })
+    this._file.on('error', (error) => this.emit(error))
 
     if (this._stream) {
       this._stream.unpipe()
       this._speaker.close()
     }
 
-    this._speaker = new Speaker()
     this._stream = new lame.Decoder()
+    this._stream.on('error', (error) => this.emit(error))
+
+    this._speaker = new Speaker()
+    this._speaker.on('error', (error) => this.emit(error))
 
     this._stream.pipe(this._speaker)
     this._stream.on('close', () => {
@@ -39,7 +48,7 @@ class PlayerService extends events.EventEmitter {
     })
     this._stream.on('error', (error) => this.emit('error', error))
 
-    readable.pipe(this._stream)
+    this._file.pipe(this._stream)
 
     this.playing = true
     this.paused = false
@@ -50,7 +59,7 @@ class PlayerService extends events.EventEmitter {
     if (this.status() !== PLAYER_STATUS.PAUSED) {
       return
     }
-    this._speaker = new Speaker()
+    // this._speaker = new Speaker()
     this._stream.pipe(this._speaker)
 
     this.playing = true
@@ -62,7 +71,7 @@ class PlayerService extends events.EventEmitter {
     if (this.status() !== PLAYER_STATUS.PLAYING) {
       return
     }
-    this._speaker.end()
+    // this._speaker.end()
     this._stream.unpipe()
 
     this.playing = false

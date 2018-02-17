@@ -68,6 +68,8 @@ export default function (io) {
 
     player.on('playing', emitPlaylist)
 
+    player.on('error', (error) => console.error(error))
+
     socket.on('api:playlist', emitPlaylist)
 
     socket.on('api:search', function (keyword) {
