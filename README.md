@@ -1,12 +1,19 @@
 # channel-midnight
 
 ## 如何开始
-### Ubuntu
-1. 安装 libasound2-dev
+1. 安装 libao
 
-	```sh
-	sudo apt-get install libasound2-dev
-	```
+	- Debian
+
+		```sh
+		sudo apt-get install libao-dev
+		```
+
+	- OSX
+
+		```sh
+		sudo brew install libao
+		```
 
 2. 安装 nodejs 及 make
 
@@ -20,22 +27,6 @@
 
 	```sh
 	npm i
-	cd src/static && npm i
-	```
-
-### OSX
-1. 安装 nodejs 及 make
-
-2. 安装 node-dev 及 gulp
-
-	```sh
-    npm i -g node-dev gulp
-    ```
-
-3. 安装依赖包
-
-	```sh
-	npm i --mpg123-backend=openal
 	cd src/static && npm i
 	```
 
