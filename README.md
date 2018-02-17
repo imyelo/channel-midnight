@@ -16,17 +16,11 @@
     npm i -g node-dev gulp
     ```
 
-4. 安装 yarn
+4. 安装依赖包
 
 	```sh
-	npm i -g yarn
-	```
-
-5. 安装依赖包
-
-	```sh
-	yarn
-	cd src/static && yarn
+	npm i
+	cd src/static && npm i
 	```
 
 
