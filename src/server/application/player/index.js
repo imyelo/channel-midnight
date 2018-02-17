@@ -1,6 +1,7 @@
 import events from 'events'
 import km from 'keymirror'
 import Speaker from 'speaker'
+import Libao from 'libao'
 import lame from 'lame'
 import request from 'request'
 
@@ -18,36 +19,34 @@ class PlayerService extends events.EventEmitter {
 
     this.playing = false
     this.paused = false
+
+    this._onError = (error) => this.emit('error')
+    this._onEnd = () => {
+      this.playing = false
+      this.paused = false
+      this.emit('playend')
+    }
   }
 
   play (source) {
-    this._file = request(source)
-    this._file.on('close', () => {
-      this.playing = false
-      this.paused = false
-      this.emit('playend')
-    })
-    this._file.on('error', (error) => this.emit(error))
-
-    if (this._stream) {
-      this._stream.unpipe()
+    if (this._file) {
       this._speaker.close()
+      this._stream.unpipe()
+      this._file.removeListener('close', this._onEnd)
+      this._file.abort()
     }
 
-    this._stream = new lame.Decoder()
-    this._stream.on('error', (error) => this.emit(error))
+    this._file = request(source)
+    this._file.on('close', this._onEnd)
+    this._file.on('error', this._onError)
 
-    this._speaker = new Speaker()
-    this._speaker.on('error', (error) => this.emit(error))
+    this._stream = new lame.Decoder()
+    this._stream.on('error', this._onError)
+
+    this._speaker = new Libao()
+    this._speaker.on('error', this._onError)
 
     this._stream.pipe(this._speaker)
-    this._stream.on('close', () => {
-      this.playing = false
-      this.paused = false
-      this.emit('playend')
-    })
-    this._stream.on('error', (error) => this.emit('error', error))
-
     this._file.pipe(this._stream)
 
     this.playing = true
