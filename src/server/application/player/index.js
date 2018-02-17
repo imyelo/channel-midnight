@@ -1,6 +1,8 @@
 import events from 'events'
-import Player from 'player'
 import km from 'keymirror'
+import Speaker from 'speaker'
+import lame from 'lame'
+import request from 'request'
 
 import store from '../store'
 
@@ -14,66 +16,63 @@ class PlayerService extends events.EventEmitter {
   constructor () {
     super()
 
-    this._handlers = {
-      playing: () => {
-        this.playing = true
-        this.emit('playing')
-      },
-      playend: () => {
-        this.playing = false
-        this.emit('playend')
-      },
-      error: (error) => {
-        console.error(error)
-      },
-    }
     this.playing = false
-    this.resetPlayer()
-  }
-
-  resetPlayer () {
-    if (this.player) {
-      this.player.stop()
-      this.player.removeAllListeners()
-    }
-
-    this.player = new Player()
-
-    this.player.on('playing', this._handlers.playing)
-    this.player.on('playend', this._handlers.playend)
-    this.player.on('error', this._handlers.error)
+    this.paused = false
   }
 
   play (source) {
-    this.resetPlayer()
-    this.player.add(source)
-    this.player.play()
+    const readable = request(source)
+
+    if (this._stream) {
+      this._stream.unpipe()
+      this._speaker.close()
+    }
+
+    this._speaker = new Speaker()
+    this._stream = new lame.Decoder()
+
+    this._stream.pipe(this._speaker)
+    this._stream.on('close', () => {
+      this.playing = false
+      this.paused = false
+      this.emit('playend')
+    })
+    this._stream.on('error', (error) => this.emit('error', error))
+
+    readable.pipe(this._stream)
+
+    this.playing = true
+    this.paused = false
+    this.emit('playing')
   }
 
   resume () {
-    if (this.status() !== PLAYER_STATUS.PAUSED ) {
+    if (this.status() !== PLAYER_STATUS.PAUSED) {
       return
     }
-    this.player.pause()
+    this._speaker = new Speaker()
+    this._stream.pipe(this._speaker)
+
     this.playing = true
+    this.paused = false
     this.emit('playing')
   }
 
   pause () {
-    if (this.status() !== PLAYER_STATUS.PLAYING ) {
+    if (this.status() !== PLAYER_STATUS.PLAYING) {
       return
     }
-    this.player.pause()
+    this._speaker.end()
+    this._stream.unpipe()
+
+    this.playing = false
+    this.paused = true
     this.emit('pause')
   }
 
   status () {
-    if (this.player.paused) {
-      return PLAYER_STATUS.PAUSED
-    }
-    return this.playing ? PLAYER_STATUS.PLAYING : PLAYER_STATUS.STOP
+    return this.paused ? PLAYER_STATUS.PAUSED : this.playing ? PLAYER_STATUS.PLAYING : PLAYER_STATUS.STOP
   }
-
 }
 
 export default new PlayerService()

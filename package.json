@@ -29,11 +29,13 @@
     "koa-rt": "^0.0.2",
     "koa-static-cache": "^3.1.7",
     "koa-views": "^4.1.0",
+    "lame": "^1.2.4",
     "lowdb": "^0.15.5",
     "music-api": "^0.3.11",
     "path": "^0.12.7",
-    "player": "^0.6.1",
-    "socket.io": "^1.7.3"
+    "request": "^2.83.0",
+    "socket.io": "^1.7.3",
+    "speaker": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
