@@ -33,7 +33,21 @@
 	cd src/static && npm i
 	```
 
-## 以调试模式启动
+## 如何运行
+### 正式环境
+1. 编译打包
+
+	```sh
+	make build
+	```
+
+2. 启动服务端
+
+	```sh
+	make server
+	```
+
+### 调试模式
 1. 开启前端文件实时编译
 
 	```sh
@@ -45,17 +59,6 @@
 	```sh
 	make dev
 	```
-
-## 部署正式环境
-### 编译打包
-```sh
-make build
-```
-
-### 正式环境运行
-```sh
-make server
-```
 
 ## 听说你有一个 Idea
 [提交到 Trello](https://trello.com/b/HXu2z0rO/channel-midnight-todo)
