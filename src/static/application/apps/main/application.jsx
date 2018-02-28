@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
+import Icon from './components/icon'
+
 import transition from './transition.pcss'
 import styles from './application.pcss'
 
@@ -19,6 +21,7 @@ class Application extends Component {
           React.cloneElement(children || <div />, {key})
         }
       </ReactCSSTransitionGroup>
+      <a className={styles.message} href="https://trello.com/b/HXu2z0rO/channel-midnight-todo" target="_blank"><Icon type="handup" /> 听说你有一个 idea?</a>
     </div>)
   }
 }
