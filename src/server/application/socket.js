@@ -82,6 +82,9 @@ export default function (io) {
     })
 
     socket.on('api:add', function (song) {
+      if (!song) {
+        return
+      }
       let songs = store.get('playlist.songs').value()
       if (player.status() === PLAYER_STATUS.PLAYING) {
         songs = [...songs.slice(0, 1), song, ...songs.slice(1)]
