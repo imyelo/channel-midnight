@@ -1,4 +1,4 @@
-import player, { status } from './player'
+import player, { PLAYER_STATUS } from './player'
 import store from './store'
 import SongsService from './services/songs'
 
@@ -82,7 +82,13 @@ export default function (io) {
     })
 
     socket.on('api:add', function (song) {
-      let songs = store.get('playlist.songs').push(song).write()
+      let songs = store.get('playlist.songs').value()
+      if (player.status() === PLAYER_STATUS.PLAYING) {
+        songs = [...songs.slice(0, 1), song, ...songs.slice(1)]
+      } else {
+        songs = [song, ...songs]
+      }
+      store.set('playlist.songs', songs).write()
       socket.emit('api:add', songs)
       if (songs.length === 1) {
         play()

@@ -7,7 +7,7 @@ import request from 'request'
 
 import store from '../store'
 
-const PLAYER_STATUS = km({
+export const PLAYER_STATUS = km({
   PLAYING: null,
   PAUSED: null,
   STOP: null,
