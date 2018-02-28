@@ -8,7 +8,7 @@ require('./tasks/rev')
 require('./tasks/minify')
 
 gulp.task('dev', function () {
-  return sequence('clean', 'webpack-dev')
+  return sequence('clean', 'copy', 'webpack-dev')
 })
 
 gulp.task('build', function () {
