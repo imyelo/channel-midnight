@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import op from 'object-path'
 import km from 'keymirror'
+import DocumentTitle from 'react-document-title'
+
+import { DEFAULT_TITLE } from '../../constants'
 
 import { View, Main } from '../../components/layout'
 import Icon from '../../components/icon'
@@ -78,6 +81,7 @@ class App extends Component {
     return (
       <View>
         <Main className={styles.main}>
+          <DocumentTitle title={player.status === PLAYER_STATUS.PLAYING ? `🎵 ${op.get(songs, '0.name')}` : DEFAULT_TITLE} />
           <article className={styles.header}>
             <div className={styles.title}>
               {op.get(songs, '0.name')}
