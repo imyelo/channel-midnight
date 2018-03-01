@@ -1,5 +1,5 @@
 # channel-midnight
-> :crescent_moon: :radio: 午夜电台
+> :crescent_moon: :radio: 每个熬夜加班的团队都值得拥有的午夜电台
 
 ![screenshot](https://i.loli.net/2018/02/27/5a95679aad550.png)
 
