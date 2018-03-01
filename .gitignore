@@ -5,8 +5,6 @@
 node_modules
 
 # alive
-/build
-/logs/*
-!/logs/.gitkeep
+/dist
 /data/*
 !/data/.gitkeep

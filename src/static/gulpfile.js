@@ -1,5 +1,8 @@
+const path = require('path')
 const gulp = require('gulp')
 const sequence = require('run-sequence')
+
+process.env.NODE_CONFIG_DIR = path.resolve(__dirname, '../../config')
 
 require('./tasks/clean')
 require('./tasks/copy')

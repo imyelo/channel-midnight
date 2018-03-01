@@ -6,5 +6,5 @@ gulp.task('copy', function () {
     ], {
       base: './application'
     })
-    .pipe(gulp.dest('../../build/static/'));
+    .pipe(gulp.dest('../../dist/static/'));
 });

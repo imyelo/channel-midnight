@@ -7,13 +7,13 @@ const vinylPaths = require('vinyl-paths')
 const config = require('config')
 
 gulp.task('rev', function () {
-  return gulp.src('../../build/static/apps/entry/*.js', {
-      base: '../../build',
+  return gulp.src('../../dist/static/apps/entry/*.js', {
+      base: '../../dist',
     })
     .pipe(rev())
-    .pipe(gulp.dest('../../build'))
+    .pipe(gulp.dest('../../dist'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest('../../build'))
+    .pipe(gulp.dest('../../dist'))
 })
 
 gulp.task('rev-replace', function () {
@@ -25,8 +25,8 @@ gulp.task('rev-replace', function () {
       files: ['**/*.js', '**/*.css', '**/*.gif', '**/*.jpg', '**/*.png']
     }))
     .pipe(replace({
-      manifest: gulp.src('../../build/rev-manifest.json'),
+      manifest: gulp.src('../../dist/rev-manifest.json'),
       replaceInExtensions: ['.ejs']
     }))
-    .pipe(gulp.dest('../../build/static/templates'))
+    .pipe(gulp.dest('../../dist/static/templates'))
 })

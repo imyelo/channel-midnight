@@ -18,7 +18,7 @@
 		sudo brew install libao
 		```
 
-2. 安装 nodejs 及 make
+2. 安装 nodejs
 
 3. 安装 node-dev 及 gulp
 
@@ -29,8 +29,8 @@
 4. 安装依赖包
 
 	```sh
-	npm i
-	cd src/static && npm i
+	npm i # 后端依赖包
+	cd src/static && npm i # 前端依赖包
 	```
 
 ## 如何运行
@@ -38,26 +38,26 @@
 1. 编译打包
 
 	```sh
-	make build
+	npm run build
 	```
 
 2. 启动服务端
 
 	```sh
-	make server
+	npm run server
 	```
 
 ### 调试模式
 1. 开启前端文件实时编译
 
 	```sh
-	cd src/static && gulp
+	cd src/static && npm start
 	```
 
 2. 启动服务端
 
 	```sh
-	make dev
+	npm start
 	```
 
 ## 听说你有一个 Idea

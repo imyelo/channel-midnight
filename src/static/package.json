@@ -1,10 +1,13 @@
 {
   "name": "channel-midnight-static",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "author": "yelo <zhihuzeye@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "clean": "gulp clean"
+  },
   "devDependencies": {
     "autoprefixer": "^6.7.3",
     "babel-loader": "^6.2.9",

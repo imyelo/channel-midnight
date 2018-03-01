@@ -42,7 +42,7 @@ module.exports = co(function *() {
   app.use(logger())
 
   // favicon
-  app.use(favicon(path.resolve(__dirname, isProduction ? '../../build/static/vendors/favicon.ico' : '../static/application/vendors/favicon.ico')))
+  app.use(favicon(path.resolve(__dirname, isProduction ? '../../dist/static/vendors/favicon.ico' : '../static/application/vendors/favicon.ico')))
 
   // import applications
   require('./application')(app, io)
