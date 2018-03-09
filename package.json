@@ -16,7 +16,7 @@
     "clean:server": "rimraf ./dist/server"
   },
   "repository": {
-    "url": "git@192.168.1.216:soda/channel-midnight.git",
+    "url": "git@github.com:imyelo/channel-midnight.git",
     "type": "git"
   },
   "author": "yelo <zhihuzeye@gmail.com>",
